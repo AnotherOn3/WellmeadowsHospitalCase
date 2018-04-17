@@ -14,5 +14,8 @@ namespace WellmeadowsHospitalCase.ViewModels
         public DateTime DatePlaced { get; set; }
         public DateTime ExpectedDateLeave { get; set; }
         public DateTime ActualLeave { get; set; }
+
+        public BedVM Bed { get; set; }
+        public PatientVM Patient { get; set; }
     }
 }

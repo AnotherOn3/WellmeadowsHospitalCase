@@ -11,5 +11,8 @@ namespace WellmeadowsHospitalCase.ViewModels
         public int BedNumber { get; set; }
         public bool IsAvailable { get; set; }
         public int WardId { get; set; }
+
+        public List<InpatientVM> Inpatients { get; set; }
+        public WardVM Ward { get; set; }
     }
 }

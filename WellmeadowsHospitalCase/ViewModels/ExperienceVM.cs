@@ -13,5 +13,7 @@ namespace WellmeadowsHospitalCase.ViewModels
         public string Position { get; set; }
         public string OrganisationName { get; set; }
         public int StaffId { get; set; }
+
+        public StaffVM Staff { get; set; }
     }
 }

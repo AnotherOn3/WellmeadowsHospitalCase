@@ -13,5 +13,7 @@ namespace WellmeadowsHospitalCase.ViewModels
         public string TypeOfContract { get; set; }
         public string TypeOfPayment { get; set; }
         public string SalaryScale { get; set; }
+
+        public StaffVM Staff { get; set; }
     }
 }

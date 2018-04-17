@@ -12,5 +12,7 @@ namespace WellmeadowsHospitalCase.ViewModels
         public string Type { get; set; }
         public string InstitutionName { get; set; }
         public int StaffId { get; set; }
+
+        public StaffVM Staff { get; set; }
     }
 }

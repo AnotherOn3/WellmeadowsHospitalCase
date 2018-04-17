@@ -12,5 +12,8 @@ namespace WellmeadowsHospitalCase.ViewModels
         public string Location { get; set; }
         public int NumberOfBeds { get; set; }
         public string TelExtentionNumber { get; set; }
+
+        public List<BedVM> Beds { get; set; }
+        public List<StaffVM> Staffs { get; set; }
     }
 }

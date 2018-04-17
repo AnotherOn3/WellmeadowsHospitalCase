@@ -20,5 +20,8 @@ namespace WellmeadowsHospitalCase.ViewModels
         public bool IsOutpatient { get; set; }
 
         public List<AppointmentVM> Appointments { get; set; }
+        public List<InpatientVM> Inpatients { get; set; }
+        public LocalDoctorVM LocalDoctor { get; set; }
+        public NextOfKinVM NextOfKin { get; set; }
     }
 }
