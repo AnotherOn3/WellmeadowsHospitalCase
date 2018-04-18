@@ -1,0 +1,47 @@
+﻿@model WellmeadowsHospitalCase.ViewModels.StaffVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All Staffs</h2>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>Gender</th>
+            <th>Insurance</th>
+            <th>Phone Number</th>
+            <th>Type Of Shift</th>
+            <th>Staff Number</th>
+            <th>Contract Id</th>
+            <th>Position Id</th>
+            <th>Ward Id</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var staffvm in Model.Staffs)
+        {
+            <tr>
+                <td>@staffvm.Id</td>
+                <td>@staffvm.FName</td>
+                <td>@staffvm.LName</td>
+                <td>@staffvm.Address</td>
+                <td>@staffvm.Gender</td>
+                <td>@staffvm.Insurance</td>
+                <td>@staffvm.PhoneNumber</td>
+                <td>@staffvm.TypeOfShift</td>
+                <td>@staffvm.StaffNumber</td>
+                <td>@staffvm.ContractId</td>
+                <td>@staffvm.Position.Name</td>
+                <td>@staffvm.WardId</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Staff/Create" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span> Create a new staff member</a><br />
+

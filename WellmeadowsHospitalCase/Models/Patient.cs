@@ -13,7 +13,7 @@ namespace WellmeadowsHospitalCase.Models
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
         public string Gender { get; set; }
-        public string MartialStatus { get; set; }
+        public string MaritalStatus { get; set; }
         public DateTime RegisterDate { get; set; }
         public int NextOfKinId { get; set; }
         public int LocalDoctorId { get; set; }

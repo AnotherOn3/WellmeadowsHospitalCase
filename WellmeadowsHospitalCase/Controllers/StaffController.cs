@@ -11,10 +11,46 @@ namespace WellmeadowsHospitalCase.Controllers
 {
     public class StaffController : Controller
     {
-        // GET: Staff
         public ActionResult Index()
         {
-            return View();
+            StaffRepository staffRepository = new StaffRepository();
+            List<Staff> staffs = staffRepository.LoadAllStaffs();
+            List<StaffVM> staffVMs = new List<StaffVM>();
+            PositionRepository positionRepository = new PositionRepository();
+
+            foreach (Staff staff in staffs)
+            {
+                StaffVM staffvm = new StaffVM();
+                staffvm.Id = staff.Id;
+                staffvm.FName = staff.FName;
+                staffvm.LName = staff.LName;
+                staffvm.Insurance = staff.Insurance;
+                staffvm.PhoneNumber = staff.PhoneNumber;
+                staffvm.PositionId = staff.PositionId;
+                staffvm.TypeOfShift = staff.TypeOfShift;
+                staffvm.Address = staff.Address;
+                staffvm.StaffNumber = staff.StaffNumber;
+                staffvm.ContractId = staff.ContractId;
+                staffvm.DateOfBirth = staff.DateOfBirth;
+                staffvm.Gender = staff.Gender;
+                staffvm.WardId = staff.WardId;
+
+
+                Position position = positionRepository.LoadPosition(staff.PositionId);
+                PositionVM positionVM = new PositionVM();
+
+                positionVM.Id = position.Id;
+                positionVM.Name = position.Name;
+
+                staffvm.Position = positionVM;
+                //This code will return only the name of the company which will be presented into the SHOW view
+                staffVMs.Add(staffvm);
+            }
+
+            StaffVM model = new StaffVM();
+            model.Staffs = staffVMs;
+
+            return View(model);
         }
 
         // GET: Staff/Details/5

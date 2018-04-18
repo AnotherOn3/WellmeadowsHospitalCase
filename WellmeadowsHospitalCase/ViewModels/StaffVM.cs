@@ -21,6 +21,8 @@ namespace WellmeadowsHospitalCase.ViewModels
         public int PositionId { get; set; }
         public int WardId { get; set; }
 
+
+        public List<StaffVM> Staffs { get; set; }
         public PositionVM Position { get; set; }
         public List<AppointmentVM> Appointments { get; set; }
         public EmployeeContractVM EmployeeContract { get; set; }
