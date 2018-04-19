@@ -14,7 +14,66 @@ namespace WellmeadowsHospitalCase.Controllers
         // GET: Patient
         public ActionResult Index()
         {
-            return View();
+            PatientRepository patientRepository = new PatientRepository();
+            List<Patient> patients = patientRepository.LoadAllPatients();
+            List<PatientVM> patientVMs = new List<PatientVM>();
+
+            foreach (Patient patient in patients)
+            {
+                PatientVM patientvm = new PatientVM();
+                patientvm.Id = patient.Id;
+                patientvm.FName = patient.FName;
+                patientvm.LName = patient.LName;
+                patientvm.PhoneNumber = patient.PhoneNumber;
+                patientvm.Address = patient.Address;
+                patientvm.MaritalStatus = patient.MaritalStatus;
+                patientvm.RegisterDate = patient.RegisterDate;
+                patientvm.LocalDoctorId = patient.LocalDoctorId;
+                patientvm.NextOfKinId = patient.NextOfKinId;
+                patientvm.Gender = patient.Gender;
+                patientvm.IsOutpatient = patient.IsOutpatient;
+
+                
+                //This code will return only the name of the company which will be presented into the SHOW view
+                patientVMs.Add(patientvm);
+            }
+
+            PatientVM model = new PatientVM();
+            model.Patients = patientVMs;
+
+            return View(model);
+        }
+
+        public ActionResult Outpatients()
+        {
+            PatientRepository patientRepository = new PatientRepository();
+            List<Patient> patients = patientRepository.LoadAllOutPatients();
+            List<PatientVM> patientVMs = new List<PatientVM>();
+
+            foreach (Patient patient in patients)
+            {
+                PatientVM patientvm = new PatientVM();
+                patientvm.Id = patient.Id;
+                patientvm.FName = patient.FName;
+                patientvm.LName = patient.LName;
+                patientvm.PhoneNumber = patient.PhoneNumber;
+                patientvm.Address = patient.Address;
+                patientvm.MaritalStatus = patient.MaritalStatus;
+                patientvm.RegisterDate = patient.RegisterDate;
+                patientvm.LocalDoctorId = patient.LocalDoctorId;
+                patientvm.NextOfKinId = patient.NextOfKinId;
+                patientvm.Gender = patient.Gender;
+                patientvm.IsOutpatient = patient.IsOutpatient;
+
+
+                //This code will return only the name of the company which will be presented into the SHOW view
+                patientVMs.Add(patientvm);
+            }
+
+            PatientVM model = new PatientVM();
+            model.Patients = patientVMs;
+
+            return View(model);
         }
 
         // GET: Patient/Details/5

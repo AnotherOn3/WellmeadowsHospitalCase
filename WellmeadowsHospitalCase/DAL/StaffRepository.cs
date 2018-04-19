@@ -13,13 +13,19 @@ namespace WellmeadowsHospitalCase.DAL
         public void SaveStaffMember(Staff Staff)
         {
             SqlConnection connection = CreateConnection();
+            SqlTransaction secureCreateStaff;
 
+            connection.Open();
+            secureCreateStaff = connection.BeginTransaction();
             try
             {
-                connection.Open();
-                SqlCommand command = connection.CreateCommand();
 
-                command.CommandText = "INSERT INTO Staff(FName, LName, StaffNumber, TypeOfShift, Address, PhoneNumber, DateOfBirth, Gender, Insurance, ContractId, PositionId, WardId) values(@FName, @LName, @StaffNumber, @TypeOfShift, @Address, @PhoneNumber, @DateOfBirth, @Gender, @Insurance, @ContractId, @PositionId, @WardId)";
+
+                SqlCommand command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.Transaction = secureCreateStaff;
+
+                command.CommandText = "CreateStaff";
                 command.Parameters.Add("@FName", SqlDbType.NVarChar).Value = Staff.FName;
                 command.Parameters.Add("@LName", SqlDbType.NVarChar).Value = Staff.LName;
                 command.Parameters.Add("@StaffNumber", SqlDbType.Int).Value = Staff.StaffNumber;
@@ -34,9 +40,12 @@ namespace WellmeadowsHospitalCase.DAL
                 command.Parameters.Add("@WardId", SqlDbType.Int).Value = Staff.WardId;
 
                 command.ExecuteNonQuery();
+
+                secureCreateStaff.Commit();
             }
             catch(Exception ex)
             {
+                secureCreateStaff.Rollback();
                 Console.WriteLine(ex);
             }
             finally

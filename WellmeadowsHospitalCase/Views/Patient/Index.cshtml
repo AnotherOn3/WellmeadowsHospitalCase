@@ -1,0 +1,47 @@
+﻿@model WellmeadowsHospitalCase.ViewModels.PatientVM
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>All Patients</h2>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>Gender</th>
+            <th>Phone Number</th>
+            <th>Marital Status</th>
+            <th>Register Date</th>
+            <th>Local Doctor ID</th>
+            <th>Next of kin Id</th>
+            <th>Is Outpatient</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var patientvm in Model.Patients)
+        {
+            <tr>
+                <td>@patientvm.Id</td>
+                <td>@patientvm.FName</td>
+                <td>@patientvm.LName</td>
+                <td>@patientvm.Address</td>
+                <td>@patientvm.Gender</td>
+                <td>@patientvm.PhoneNumber</td>
+                <td>@patientvm.MaritalStatus</td>
+                <td>@patientvm.RegisterDate</td>
+                <td>@patientvm.LocalDoctorId</td>
+                <td>@patientvm.NextOfKinId</td>
+                <td>@patientvm.IsOutpatient</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Patient/Create" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span> Create a new patient member</a><br />
+
+
+

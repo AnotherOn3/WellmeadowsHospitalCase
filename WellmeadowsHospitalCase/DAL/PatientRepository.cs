@@ -43,5 +43,95 @@ namespace WellmeadowsHospitalCase.DAL
                 connection.Close();
             }
         }
+
+        public List<Patient> LoadAllPatients()
+        {
+            //Loading all the companies from the database - making the connection, creating and executing the command
+            List<Patient> result = new List<Patient>();
+            SqlConnection connection = CreateConnection();
+
+            try
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT Id, FName, LName, Address, PhoneNumber, Gender, MaritalStatus, RegisterDate, NextOfKinId, LocalDoctorId,IsOutpatient from Patient";
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Patient patient = new Patient();
+                    patient.Id = reader.GetInt32(0);
+                    patient.FName = reader.GetString(1);
+                    patient.LName = reader.GetString(2);
+                    patient.Address = reader.GetString(3);
+                    patient.PhoneNumber = reader.GetString(4);
+                    patient.Gender = reader.GetString(5);
+                    patient.MaritalStatus = reader.GetString(6);
+                    patient.RegisterDate = reader.GetDateTime(7);
+                    patient.NextOfKinId = reader.GetInt32(8);
+                    patient.LocalDoctorId = reader.GetInt32(9);
+                    patient.IsOutpatient = reader.GetBoolean(10);
+
+                    result.Add(patient);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+            return result;
+        }
+
+        public List<Patient> LoadAllOutPatients()
+        {
+            //Loading all the companies from the database - making the connection, creating and executing the command
+            List<Patient> result = new List<Patient>();
+            SqlConnection connection = CreateConnection();
+
+            try
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT Id, FName, LName, Address, PhoneNumber, Gender, MaritalStatus, RegisterDate, NextOfKinId, LocalDoctorId,IsOutpatient from Patient WHERE IsOutpatient = 1";
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Patient patient = new Patient();
+                    patient.Id = reader.GetInt32(0);
+                    patient.FName = reader.GetString(1);
+                    patient.LName = reader.GetString(2);
+                    patient.Address = reader.GetString(3);
+                    patient.PhoneNumber = reader.GetString(4);
+                    patient.Gender = reader.GetString(5);
+                    patient.MaritalStatus = reader.GetString(6);
+                    patient.RegisterDate = reader.GetDateTime(7);
+                    patient.NextOfKinId = reader.GetInt32(8);
+                    patient.LocalDoctorId = reader.GetInt32(9);
+                    patient.IsOutpatient = reader.GetBoolean(10);
+
+                    result.Add(patient);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+            return result;
+        }
     }
 }
